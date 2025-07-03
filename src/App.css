@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  background-color: #f8f9fc;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 40px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.club-card {
+  background: linear-gradient(90deg, #003366, #336699);
+  border-radius: 20px;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  height: 100px;
+}
+
+.club-card:hover {
+  transform: scale(1.03);
+}
+
+.club-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.club-details {
+  padding: 40px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #f0f4fb;
+  border-radius: 12px;
+}
+
+.club-heading {
+  color: #003366;
+  font-size: 2rem;
+}
+
+.club-description {
+  margin: 20px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.member-button {
+  background-color: #003366;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 20px 0 10px 0;
+  cursor: pointer;
+}
+
+.member-list {
+  list-style-type: disc;
+  text-align: left;
+  max-width: 300px;
+  margin: 0 auto 20px auto;
+  padding-left: 20px;
+  color: #333;
+}
+
+.year-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.year-dropdown {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
