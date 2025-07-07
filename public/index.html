@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAInT : Student Association of IT</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f9f9f9;
+    }
+
+    .sidebar {
+      width: 180px;
+      background-color: #0b2c47;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+      gap: 10px;
+    }
+
+    .sidebar img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+       .nav-button {
+      background-color: #1e5a94;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 12px;
+      width: 100%;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      text-align: center;
+      display: block;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-button:hover {
+      background-color: #2d7cc2;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: #d5e6f8;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #1e3c72;
+      border-bottom: 2px solid #bdd6f1;
+    }
+
+    .about-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .about-section h2 {
+      font-size: 28px;
+      color: #1e3c72;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .about-section h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 4px;
+      background-color: #1e3c72;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    .about-section p {
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 14px;
+    }
+
+    .cards-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      width: 280px;
+      text-align: left;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: #444;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="logo.png" alt="SAInT Logo" />
+    <a href="C:\React\nexusdashboard\src\components\home.html" class="nav-button">Home</a>
+    <a href="C:\React\nexusdashboard\src\components\Pages\UpdatesPage.js" class="nav-button">Updates</a>
+    <a href="C:\React\nexusdashboard\src\components\Pages\ActivitiesPage.js" class="nav-button">Activities</a>
+    <a href="C:\React\nexusdashboard\src\components\Pages\ClubsPage.js" class="nav-button">Clubs</a>
+    <a href="C:\React\nexusdashboard\src\components\Pages\MembersPage.js" class="nav-button">Members</a>
+    <a href="C:\React\nexusdashboard\src\components\Pages\GalleryPage.js" class="nav-button">Gallery</a>
+  </div>
+
+  <div class="main-content">
+    <div class="header">SAInT : Student Association of Information Technology</div>
+
+    <div class="about-section">
+      <h2>About SAInT</h2>
+      <p>
+        Student Association of Information Technology (SAInT) is the official club of the
+        IT Department, dedicated to fostering technical excellence and innovation among students.
+      </p>
+    </div>
+
+    <div class="cards-container">
+      <div class="card">
+        <h3>💡 Innovation</h3>
+        <p>We foster a culture of innovation and creative problem-solving through workshops, hackathons, and collaborative projects.</p>
+      </div>
+      <div class="card">
+        <h3>👥 Community</h3>
+        <p>We build a strong community of IT enthusiasts who learn, grow, and succeed together through networking and collaboration.</p>
+      </div>
+      <div class="card">
+        <h3>⚗️ Skill Development</h3>
+        <p>We provide opportunities for students to enhance their technical and soft skills through hands-on experiences and industry exposure.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
