@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Bell, Activity, Users, UserCheck, Camera, ChevronRight } from 'lucide-react';
+import { Home, Bell, Activity, Users, UserCheck, Camera } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
   ];
 
   return (
-    <div className="w-72 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 min-h-screen shadow-2xl relative overflow-hidden">
+    <div className="w-72 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 min-h-screen shadow-2xl sticky top-0 left-0 overflow-hidden">
       <div className="w-72 bg-gradient-to-br from-slate-800 via-blue-900 to-indigo-900 min-h-screen shadow-2xl relative overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 opacity-10">
@@ -37,7 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
                 onError={(e) => {
                   // Fallback if image doesn't load
                   e.currentTarget.style.display = 'none';
-                  e.currentTarget.nextElementSibling!.style.display = 'flex';
+                  (e.currentTarget.nextElementSibling as HTMLElement)!.style.display = 'flex';
                 }}
               />
               <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl shadow-lg ring-2 ring-white/20 items-center justify-center hidden">
@@ -122,7 +122,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
         <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-white/10 backdrop-blur-sm">
           <div className="text-center">
             <p className="text-blue-300 text-sm font-medium">Information Technology</p>
-            <p className="text-blue-400 text-xs opacity-80">© 2024 SAInT Association</p>
+            <p className="text-blue-400 text-xs opacity-80">© 2025 Nexus Club</p>
           </div>
         </div>
       </div>

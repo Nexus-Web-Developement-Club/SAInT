@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Gallery from './components/Gallery';
+import LandingPage from './components/LandingPage';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('gallery');
+  const [activeTab, setActiveTab] = useState('home');
 
   const renderContent = () => {
     switch (activeTab) {
       case 'gallery':
         return <Gallery />;
       case 'home':
-        return (
-          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to SAInT</h1>
-              <p className="text-xl text-gray-600">Student Association of Information Technology</p>
-            </div>
-          </div>
-        );
+        return <LandingPage />;
       case 'updates':
         return (
           <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -61,7 +55,9 @@ function App() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+      <div className="sticky top-0 h-screen">
+        <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+      </div>
       <div className="flex-1">
         {renderContent()}
       </div>
