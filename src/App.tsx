@@ -3,6 +3,9 @@ import Sidebar from './components/Sidebar';
 import Gallery from './components/Gallery';
 import LandingPage from './components/LandingPage';
 import Clubs from './components/Clubs';
+import Updates from './components/Updates';
+import Members from './components/Members';
+import Activities from './components/Activities';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -14,34 +17,13 @@ function App() {
       case 'home':
         return <LandingPage />;
       case 'updates':
-        return (
-          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Updates</h1>
-              <p className="text-xl text-gray-600">Stay updated with latest news and announcements</p>
-            </div>
-          </div>
-        );
+        return <Updates />;
       case 'activities':
-        return (
-          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Activities</h1>
-              <p className="text-xl text-gray-600">Explore our various activities and events</p>
-            </div>
-          </div>
-        );
+        return <Activities />;
       case 'clubs':
         return <Clubs />; // ← This is the key change!
       case 'members':
-        return (
-          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Members</h1>
-              <p className="text-xl text-gray-600">Meet our amazing community members</p>
-            </div>
-          </div>
-        );
+        return <Members/>;
       default:
         return <Gallery />;
     }

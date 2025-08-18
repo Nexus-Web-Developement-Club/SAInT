@@ -216,73 +216,70 @@ const Clubs: React.FC = () => {
     ? (activities[selectedClub] || []).filter((act) => act.year === selectedYear)
     : [];
 
-  // Detailed activity view
   if (selectedActivity) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 p-6">
+      <div className="min-h-screen bg-gray-50 p-6">
         <div className="max-w-4xl mx-auto">
           <button
             onClick={() => setSelectedActivity(null)}
-            className="flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors"
+            className="flex items-center gap-2 text-purple-700 hover:text-purple-900 mb-6 transition-colors"
           >
             <ArrowLeft size={20} />
             Back to Activities
           </button>
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-            <h1 className="text-3xl font-bold text-white mb-6">{selectedActivity.name}</h1>
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="bg-white/70 backdrop-blur-md rounded-2xl p-8 border border-purple-300 shadow-md">
+            <h1 className="text-3xl font-bold text-purple-900 mb-6">{selectedActivity.name}</h1>
+            <div className="grid md:grid-cols-2 gap-6 mb-8 text-purple-900">
               <div className="space-y-4">
-                <div className="flex items-center gap-3 text-white/90">
-                  <User className="text-blue-300" size={20} />
+                <div className="flex items-center gap-3">
+                  <User className="text-indigo-500" size={20} />
                   <div>
-                    <p className="text-sm text-white/70">Faculty Coordinator</p>
-                    <p className="font-semibold">{selectedActivity.facultyCoordinator}</p>
+                    <p className="text-sm font-semibold">Faculty Coordinator</p>
+                    <p>{selectedActivity.facultyCoordinator}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 text-white/90">
-                  <Calendar className="text-green-300" size={20} />
+                <div className="flex items-center gap-3">
+                  <Calendar className="text-green-500" size={20} />
                   <div>
-                    <p className="text-sm text-white/70">Date</p>
-                    <p className="font-semibold">
-                      {new Date(selectedActivity.date).toLocaleDateString()}
-                    </p>
+                    <p className="text-sm font-semibold">Date</p>
+                    <p>{new Date(selectedActivity.date).toLocaleDateString()}</p>
                   </div>
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="flex items-start gap-3 text-white/90">
-                  <MapPin className="text-red-300 mt-1" size={20} />
+                <div className="flex items-start gap-3">
+                  <MapPin className="text-red-500 mt-1" size={20} />
                   <div>
-                    <p className="text-sm text-white/70">Location</p>
-                    <p className="font-semibold">{selectedActivity.location}</p>
+                    <p className="text-sm font-semibold">Location</p>
+                    <p>{selectedActivity.location}</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="text-yellow-300" size={20} />
-                <h3 className="text-xl font-semibold text-white">About the Session</h3>
+                <FileText className="text-yellow-500" size={20} />
+                <h3 className="text-xl font-semibold text-purple-900">About the Session</h3>
               </div>
-              <p className="text-white/80 leading-relaxed">{selectedActivity.description}</p>
+              <p className="leading-relaxed">{selectedActivity.description}</p>
             </div>
             {selectedActivity.images.length > 0 && (
               <div>
                 <div className="flex items-center gap-2 mb-4">
-                  <Image className="text-pink-300" size={20} />
-                  <h3 className="text-xl font-semibold text-white">Session Gallery</h3>
+                  <Image className="text-pink-500" size={20} />
+                  <h3 className="text-xl font-semibold text-purple-900">Session Gallery</h3>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {selectedActivity.images.map((img, idx) => (
-                    <div key={idx} className="relative group">
+                    <div
+                      key={idx}
+                      className="relative group rounded-lg overflow-hidden shadow-lg"
+                    >
                       <img
                         src={img}
-                        alt={`${selectedActivity.name} ${idx + 1}`}
-                        className="w-full h-48 object-cover rounded-lg transition-transform group-hover:scale-105"
+                        alt={`${selectedActivity.name} image ${idx + 1}`}
+                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
-                        <p className="text-white text-sm">View Image</p>
-                      </div>
                     </div>
                   ))}
                 </div>
@@ -294,171 +291,116 @@ const Clubs: React.FC = () => {
     );
   }
 
-  // Detailed club view
-  if (selectedClub && selectedClubData) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 p-6">
-        <div className="max-w-6xl mx-auto">
-          <button
-            onClick={() => {
-              setSelectedClub(null);
-              setViewMembers(false);
-            }}
-            className="flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors"
-          >
-            <ArrowLeft size={20} />
-            Back to Clubs
-          </button>
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-8 border border-white/20">
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              <div className="relative">
-                <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/30">
-                  <img
-                    src={selectedClubData.logo}
-                    alt={selectedClubData.name}
-                    className="w-20 h-20 object-contain"
-                  />
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-extrabold text-purple-900 mb-8">Clubs & Activities</h1>
+        {!selectedClub && (
+          <div className="grid md:grid-cols-3 gap-8">
+            {clubs.map((club) => (
+              <div
+                key={club.id}
+                className="bg-white/70 backdrop-blur-md rounded-2xl p-6 border border-purple-300 cursor-pointer hover:bg-white/80 transition-colors shadow-md"
+                onClick={() => {
+                  setSelectedClub(club.id);
+                  setViewMembers(false);
+                  setSelectedYear('2024-2025');
+                }}
+              >
+                <img
+                  src={club.logo}
+                  alt={`${club.name} logo`}
+                  className="w-24 h-24 object-contain mb-4"
+                />
+                <h2 className="text-xl font-semibold text-purple-900 mb-2">{club.name}</h2>
+                <p className="text-purple-900 text-sm leading-relaxed">{club.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {selectedClub && selectedClubData && (
+          <div>
+            <button
+              onClick={() => setSelectedClub(null)}
+              className="flex items-center gap-2 text-purple-700 hover:text-purple-900 mb-6 transition-colors"
+            >
+              <ArrowLeft size={20} />
+              Back to Clubs
+            </button>
+            <div className="bg-white/70 backdrop-blur-md rounded-2xl p-8 border border-purple-300 shadow-md">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8">
+                <img
+                  src={selectedClubData.logo}
+                  alt={`${selectedClubData.name} logo`}
+                  className="w-32 h-32 object-contain rounded-lg"
+                />
+                <div>
+                  <h2 className="text-3xl font-bold text-purple-900 mb-2">{selectedClubData.name}</h2>
+                  <p className="text-purple-900 max-w-xl">{selectedClubData.description}</p>
                 </div>
               </div>
-              <div className="text-center md:text-left flex-1">
-                <h1 className="text-4xl font-bold text-white mb-2">{selectedClubData.name}</h1>
-                <p className="text-blue-300 text-lg mb-4">{selectedClubData.category}</p>
-                <p className="text-white/80 text-lg leading-relaxed max-w-3xl">
-                  {selectedClubData.description}
-                </p>
-              </div>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <button
-                onClick={() => setViewMembers((prev) => !prev)}
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
-              >
-                <Users size={20} />
-                {viewMembers ? 'Hide Members' : 'View Club Members'}
-              </button>
-            </div>
-            {viewMembers && (
-              <ul className="mt-4 text-white/90 space-y-2">
-                {memberList.map((m, idx) => (
-                  <li key={idx} className="pl-4 list-disc">
-                    {m}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-white">Activities</h2>
-              <div className="relative">
+
+              <div className="mb-6 flex items-center gap-4">
+                <label htmlFor="yearSelect" className="text-purple-900 font-semibold">
+                  Select Academic Year:
+                </label>
                 <select
+                  id="yearSelect"
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
-                  className="bg-white/20 text-white border border-white/30 rounded-lg px-4 py-2 pr-10 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="rounded-md p-1 text-black"
                 >
-                  {years.map((yr) => (
-                    <option key={yr} value={yr} className="bg-gray-800 text-white">
-                      {yr}
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
                     </option>
                   ))}
                 </select>
-                <ChevronDown
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70"
-                  size={16}
-                />
               </div>
-            </div>
-            {clubActivities.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {clubActivities.map((act) => (
-                  <div
-                    key={act.id}
-                    onClick={() => setSelectedActivity(act)}
-                    className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:border-white/40 transition-all cursor-pointer hover:transform hover:scale-105"
-                  >
-                    <h3 className="text-xl font-semibold text-white mb-3">{act.name}</h3>
-                    <div className="space-y-2 text-white/80">
-                      <div className="flex items-center gap-2">
-                        <Calendar size={16} />
-                        <span className="text-sm">
-                          {new Date(act.date).toLocaleDateString()}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <User size={16} />
-                        <span className="text-sm">{act.facultyCoordinator}</span>
-                      </div>
-                    </div>
-                    <p className="text-white/70 text-sm mt-3 line-clamp-2">
-                      {act.description}
-                    </p>
-                    <div className="mt-4 text-blue-300 text-sm font-medium">
-                      Click to view details →
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12">
-                <div className="text-white/40 mb-4">
-                  <Calendar size={48} className="mx-auto" />
-                </div>
-                <p className="text-white/70 text-lg">No activities found for {selectedYear}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
 
-  // Default clubs grid view
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 p-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Our Clubs</h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
-            Discover our diverse range of clubs and communities. Each club offers unique opportunities for
-            learning, networking, and personal growth in specialized fields.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {clubs.map((club) => (
-            <div
-              key={club.id}
-              onClick={() => {
-                setSelectedClub(club.id);
-                setViewMembers(false);
-              }}
-              className="group bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:border-white/40 transition-all cursor-pointer hover:transform hover:scale-105"
-            >
-              <div className="text-center">
-                <div className="relative mx-auto mb-6 w-24 h-24">
-                  <div className="w-full h-full bg-white/20 rounded-full flex items-center justify-center border-2 border-white/30 group-hover:border-white/50 transition-colors">
-                    <img
-                      src={club.logo}
-                      alt={club.name}
-                      className="w-16 h-16 object-contain"
-                    />
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
-                  {club.name}
-                </h3>
-                <p className="text-blue-300 text-sm font-medium mb-4">
-                  {club.category}
-                </p>
-                <p className="text-white/80 text-sm leading-relaxed mb-6">
-                  {club.description}
-                </p>
-                <div className="text-blue-300 text-sm font-medium group-hover:text-white transition-colors">
-                  Explore Club →
+              <div>
+                <h3 className="text-2xl font-semibold text-purple-900 mb-4">Activities</h3>
+                {clubActivities.length === 0 && (
+                  <p className="text-purple-800">No activities found for selected year.</p>
+                )}
+                <div className="grid md:grid-cols-2 gap-6">
+                  {clubActivities.map((activity) => (
+                    <div
+                      key={activity.id}
+                      className="bg-white/70 backdrop-blur-md rounded-xl p-4 cursor-pointer hover:bg-white/80 transition-colors shadow-md"
+                      onClick={() => setSelectedActivity(activity)}
+                    >
+                      <h4 className="text-lg font-semibold text-purple-900 mb-1">{activity.name}</h4>
+                      <p className="text-sm text-purple-900 mb-2">{activity.facultyCoordinator}</p>
+                      <p className="text-xs text-purple-900">
+                        {new Date(activity.date).toLocaleDateString()} &bull; {activity.location}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
+
+              <button
+                onClick={() => setViewMembers(!viewMembers)}
+                className="mt-8 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+              >
+                {viewMembers ? 'Hide' : 'View'} Club Members
+              </button>
+
+              {viewMembers && (
+                <div className="mt-4">
+                  <h4 className="text-xl font-semibold text-purple-900 mb-2">Members</h4>
+                  <ul className="list-disc list-inside text-purple-900">
+                    {memberList.map((member) => (
+                      <li key={member}>{member}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
